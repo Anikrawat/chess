@@ -39,13 +39,14 @@ void Pieces::loadTexture(int pieceName, std::string path,
     std::cerr << "Failed to load image: " << IMG_GetError() << std::endl;
     return;
   }
-  PieceSprite *piece = new PieceSprite();
 
-  piece->texture = SDL_CreateTextureFromSurface(renderer, surface);
+  PieceSprite piece;
+
+  piece.texture = SDL_CreateTextureFromSurface(renderer, surface);
 
   SDL_FreeSurface(surface);
 
-  if (!piece->texture) {
+  if (!piece.texture) {
     std::cerr << "Failed to create texture from " << path << ": "
               << SDL_GetError() << std::endl;
     return;
@@ -54,19 +55,23 @@ void Pieces::loadTexture(int pieceName, std::string path,
   this->piecesSprites[pieceName] = piece;
 }
 
-void Pieces::drawPieces(SDL_Renderer *renderer) {
-  for (const auto &pair : this->piecesSprites) {
-    pair.second->dest.x = 100;
-    pair.second->dest.y = 100;
-    pair.second->dest.w = 100;
-    pair.second->dest.h = 100;
-    SDL_RenderCopy(renderer, pair.second->texture, NULL, &pair.second->dest);
-  }
+void Pieces::drawPieces(SDL_Renderer *renderer, int pieceName, SDL_Rect dest) {
+  this->piecesSprites[pieceName].dest.x = dest.x + 15;
+  this->piecesSprites[pieceName].dest.y = dest.y + 15;
+  this->piecesSprites[pieceName].dest.w = dest.w - 30;
+  this->piecesSprites[pieceName].dest.h = dest.h - 30;
+
+  // std::cout << pieceName << ": {" << this->piecesSprites[pieceName].dest.x
+  //          << " " << this->piecesSprites[pieceName].dest.y << "}" <<
+  //          std::endl;
+  //
+  SDL_RenderCopy(renderer, this->piecesSprites[pieceName].texture, NULL,
+                 &this->piecesSprites[pieceName].dest);
 }
 
 void Pieces::cleanup() {
   for (const auto &pair : this->piecesSprites) {
-    SDL_DestroyTexture(pair.second->texture);
+    SDL_DestroyTexture(pair.second.texture);
     IMG_Quit();
   }
 }

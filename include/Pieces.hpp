@@ -25,11 +25,10 @@ public:
   const int black = 8;
   const int white = 16;
 
-  std::map<int, PieceSprite *> piecesSprites;
-  // std::vector<PieceSprite *> piecesSprites;
+  std::map<int, PieceSprite> piecesSprites;
   Pieces(SDL_Renderer *renderer);
   void loadTexture(int, std::string, SDL_Renderer *);
-  void drawPieces(SDL_Renderer *renderer);
+  void drawPieces(SDL_Renderer *, int, SDL_Rect);
   void cleanup();
 };
 

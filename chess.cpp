@@ -10,25 +10,24 @@
 
 int main() {
   // Window Inititalization
-  Window *window = new Window();
+  Window window;
   // Create a renderer
-  Renderer *renderer = new Renderer(window);
+  Renderer renderer(window);
   // Board Inititalization
-  Board *board = new Board();
+  Board board;
 
+  Fen fen;
   // Image object Inititalization
   Imageinit *imageInitialization = new Imageinit();
 
   // Sprites
-  Pieces *pieceSprite = new Pieces(renderer->windowRenderer);
+  Pieces pieceSprite(renderer.windowRenderer);
 
+  fen.piecePosition(pieceSprite, board);
   const int TARGET_FPS = 60;
   const int FRAME_DELAY_MS = 1000 / TARGET_FPS;
   Uint32 framestart;
   int frametime;
-
-  Fen fen;
-  fen.piecePosition();
 
   // === Game Loop ===
   bool running = true;
@@ -47,7 +46,7 @@ int main() {
     // --- 2. Update Game Logic ---
     // (Add logic here, e.g., moving objects, collisions)
 
-    renderer->render(board, window, pieceSprite);
+    renderer.render(board, window, pieceSprite);
     //  --- 3. Render ---
     //  --- 4. Cap Framerate (optional) ---
     frametime = SDL_GetTicks() - framestart;
@@ -57,9 +56,9 @@ int main() {
   }
 
   // Cleanup
-  pieceSprite->cleanup();
-  SDL_DestroyRenderer(renderer->windowRenderer);
-  SDL_DestroyWindow(window->window);
+  pieceSprite.cleanup();
+  SDL_DestroyRenderer(renderer.windowRenderer);
+  SDL_DestroyWindow(window.window);
   SDL_Quit();
   return 0;
 }

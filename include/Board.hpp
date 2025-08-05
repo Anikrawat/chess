@@ -8,8 +8,14 @@
 #include <vector>
 
 class Board {
-private:
-  std::vector<Rectangle> cells;
+public:
+  class Cell {
+  public:
+    // Just for making rectangle. coming from golobal.hpp
+    Rectangle rectangle;
+    int piecePosition;
+  };
+  std::vector<Cell> squares;
   int cellSize = 120;
   int boardX = WINDOW_WIDTH / 2 - cellSize * 4;
   int boardY = WINDOW_HEIGHT / 2 - cellSize * 4;

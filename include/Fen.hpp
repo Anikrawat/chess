@@ -1,6 +1,7 @@
 #ifndef FEN_HPP
 #define FEN_HPP
 
+#include "Board.hpp"
 #include "Pieces.hpp"
 #include <string>
 #include <vector>
@@ -14,7 +15,7 @@ public:
   int pieceColor;
   int pieceType;
   std::string fenCode;
-  void piecePosition(Pieces);
+  void piecePosition(Pieces &pieceData, Board &board);
 };
 
 #endif // !FEN_HPP

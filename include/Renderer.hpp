@@ -10,8 +10,8 @@ class Renderer {
 public:
   SDL_Renderer *windowRenderer;
 
-  Renderer(Window *);
-  void render(Board *, Window *, Pieces *);
+  Renderer(Window);
+  void render(Board &board, Window &window, Pieces &pieceSprite);
 };
 
 #endif // !RENDERER_HPP
