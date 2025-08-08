@@ -24,10 +24,10 @@ Board::Board() {
 }
 
 void Board::draw(SDL_Renderer *renderer) {
-  std::cout << "Loop started" << std::endl;
+  // std::cout << "Loop started" << std::endl;
   for (const auto &square : squares) {
-    std::cout << "{ " << square.rectangle.rect.x + 10 << ","
-              << square.rectangle.rect.y + 10 << " }" << std::endl;
+    // std::cout << "{ " << square.rectangle.rect.x + 10 << ","
+    //         << square.rectangle.rect.y + 10 << " }" << std::endl;
     SDL_SetRenderDrawColor(renderer, square.rectangle.color.r,
                            square.rectangle.color.g, square.rectangle.color.b,
                            square.rectangle.color.a);

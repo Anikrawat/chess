@@ -1,4 +1,5 @@
 #include "Board.hpp"
+#include "Events.hpp"
 #include "Fen.hpp"
 #include "ImageInit.hpp"
 #include "Pieces.hpp"
@@ -9,7 +10,6 @@
 #include <SDL2/SDL_mouse.h>
 #include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_timer.h>
-#include <iostream>
 #include <sys/types.h>
 
 int main() {
@@ -39,25 +39,12 @@ int main() {
 
   // === Game Loop ===
   bool running = true;
-  SDL_Event event;
+  Events events;
 
   while (running) {
-    // Handle Events.
-    while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_QUIT) {
-        running = false;
-      }
 
-      if (event.type == SDL_MOUSEBUTTONDOWN) {
-        if (event.button.button == SDL_BUTTON_LEFT) {
+    events.allEvents(running, board);
 
-          SDL_GetMouseState(&mouseX, &mouseY);
-
-          std::cout << "Button clicked: " << "{ " << mouseX << "," << mouseY
-                    << " }";
-        }
-      }
-    }
     framestart = SDL_GetTicks();
 
     // Update Game Logic
