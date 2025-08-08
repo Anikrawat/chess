@@ -45,7 +45,8 @@ void Fen::piecePosition(Pieces &pieceData, Board &board) {
             std::isupper(piece) ? pieceData.white : pieceData.black;
         this->pieceType = pieceTypeFromSymbol[std::tolower(piece)];
         board.squares[rank * 8 + file].piecePosition = pieceColor | pieceType;
-        std::cout << board.squares[rank * 8 + file].piecePosition << std::endl;
+        // std::cout << board.squares[rank * 8 + file].piecePosition <<
+        // std::endl;
         file++;
       }
     }

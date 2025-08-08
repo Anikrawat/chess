@@ -8,6 +8,7 @@
 #include <iostream>
 
 Renderer::Renderer(Window window) {
+  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
   this->windowRenderer =
       SDL_CreateRenderer(window.window, -1, SDL_RENDERER_ACCELERATED);
 
@@ -23,7 +24,9 @@ void Renderer::render(Board &board, Window &window, Pieces &pieceSprite) {
   window.drawWindow(this->windowRenderer);
   board.draw(this->windowRenderer);
   for (const auto &square : board.squares) {
-    // std::cout << square.piecePosition << std::endl;
+    // std::cout << square.piecePosition << " : " << "{ "
+    //         << square.rectangle.rect.x + 10 << ","
+    //       << square.rectangle.rect.y + 10 << " }" << std::endl;
     pieceSprite.drawPieces(this->windowRenderer, square.piecePosition,
                            square.rectangle.rect);
   }

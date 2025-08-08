@@ -52,7 +52,9 @@ int main() {
         if (event.button.button == SDL_BUTTON_LEFT) {
 
           SDL_GetMouseState(&mouseX, &mouseY);
-          std::cout << "{ " << mouseX << " , " << mouseY << " }";
+
+          std::cout << "Button clicked: " << "{ " << mouseX << "," << mouseY
+                    << " }";
         }
       }
     }

@@ -19,7 +19,7 @@ Window::Window() {
 }
 
 void Window::drawWindow(SDL_Renderer *windowRenderer) {
-  SDL_SetRenderDrawColor(windowRenderer, 255, 0, 0,
+  SDL_SetRenderDrawColor(windowRenderer, 0, 0, 0,
                          255); // Black background
 
   SDL_RenderClear(windowRenderer);
