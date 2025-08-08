@@ -56,15 +56,15 @@ void Pieces::loadTexture(int pieceName, std::string path,
 }
 
 void Pieces::drawPieces(SDL_Renderer *renderer, int pieceName, SDL_Rect dest) {
-  this->piecesSprites[pieceName].dest.x = dest.x + 15;
-  this->piecesSprites[pieceName].dest.y = dest.y + 15;
-  this->piecesSprites[pieceName].dest.w = dest.w - 30;
-  this->piecesSprites[pieceName].dest.h = dest.h - 30;
+
+  this->piecesSprites[pieceName].dest.x = dest.x + 10;
+  this->piecesSprites[pieceName].dest.y = dest.y + 10;
+  this->piecesSprites[pieceName].dest.w = dest.w - 20;
+  this->piecesSprites[pieceName].dest.h = dest.h - 20;
 
   // std::cout << pieceName << ": {" << this->piecesSprites[pieceName].dest.x
-  //          << " " << this->piecesSprites[pieceName].dest.y << "}" <<
-  //          std::endl;
-  //
+  //           << " " << this->piecesSprites[pieceName].dest.y << "}" <<
+  //           std::endl;
   SDL_RenderCopy(renderer, this->piecesSprites[pieceName].texture, NULL,
                  &this->piecesSprites[pieceName].dest);
 }

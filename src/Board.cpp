@@ -4,12 +4,11 @@
 
 Board::Board() {
 
-  for (int file = 0; file < 8; file++) {
-    for (int rank = 0; rank < 8; rank++) {
+  for (int rank = 0; rank < 8; rank++) {
+    for (int file = 0; file < 8; file++) {
       Cell square;
-      square.rectangle.rect.x = boardX;
-      boardX += cellSize;
-      square.rectangle.rect.y = boardY;
+      square.rectangle.rect.x = boardX + file * cellSize;
+      square.rectangle.rect.y = boardY + rank * cellSize;
       square.rectangle.rect.w = cellSize;
       square.rectangle.rect.h = cellSize;
 
@@ -21,8 +20,6 @@ Board::Board() {
       square.piecePosition = 0;
       squares.push_back(square);
     }
-    boardY += cellSize;
-    boardX = WINDOW_WIDTH / 2 - cellSize * 4;
   }
 }
 

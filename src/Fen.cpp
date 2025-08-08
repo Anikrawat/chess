@@ -27,8 +27,8 @@ void Fen::piecePosition(Pieces &pieceData, Board &board) {
       {'k', pieceData.King},   {'q', pieceData.Queen},  {'r', pieceData.Rook},
       {'b', pieceData.Bishop}, {'n', pieceData.Knight}, {'p', pieceData.Pawn}};
 
-  // this->fenCode = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-  this->fenCode = "2R5/8/8/4r3/8/2p5/4N3/8 w - - 0 1";
+  this->fenCode = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+  // this->fenCode = "2R5/8/8/4r3/8/2p5/4N3/8 w - - 0 1";
   std::string fenPiecePosition = split(this->fenCode, ' ').at(0);
   this->rank = 7;
   this->file = 0;
@@ -45,7 +45,7 @@ void Fen::piecePosition(Pieces &pieceData, Board &board) {
             std::isupper(piece) ? pieceData.white : pieceData.black;
         this->pieceType = pieceTypeFromSymbol[std::tolower(piece)];
         board.squares[rank * 8 + file].piecePosition = pieceColor | pieceType;
-        std::cout << board.squares[rank * 8 + file].piecePosition;
+        std::cout << board.squares[rank * 8 + file].piecePosition << std::endl;
         file++;
       }
     }

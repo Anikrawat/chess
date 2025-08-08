@@ -5,10 +5,17 @@
 #include "Renderer.hpp"
 #include "Window.hpp"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_events.h>
+#include <SDL2/SDL_mouse.h>
 #include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_timer.h>
+#include <iostream>
+#include <sys/types.h>
 
 int main() {
+
+  int mouseX, mouseY;
+
   // Window Inititalization
   Window window;
   // Create a renderer
@@ -24,6 +31,7 @@ int main() {
   Pieces pieceSprite(renderer.windowRenderer);
 
   fen.piecePosition(pieceSprite, board);
+
   const int TARGET_FPS = 60;
   const int FRAME_DELAY_MS = 1000 / TARGET_FPS;
   Uint32 framestart;
@@ -34,21 +42,27 @@ int main() {
   SDL_Event event;
 
   while (running) {
-    // --- 1. Handle Events ---
+    // Handle Events.
     while (SDL_PollEvent(&event)) {
       if (event.type == SDL_QUIT) {
         running = false;
       }
-    }
 
+      if (event.type == SDL_MOUSEBUTTONDOWN) {
+        if (event.button.button == SDL_BUTTON_LEFT) {
+
+          SDL_GetMouseState(&mouseX, &mouseY);
+          std::cout << "{ " << mouseX << " , " << mouseY << " }";
+        }
+      }
+    }
     framestart = SDL_GetTicks();
 
-    // --- 2. Update Game Logic ---
-    // (Add logic here, e.g., moving objects, collisions)
-
+    // Update Game Logic
+    // Renderer.
     renderer.render(board, window, pieceSprite);
-    //  --- 3. Render ---
-    //  --- 4. Cap Framerate (optional) ---
+
+    // Frame Rate.
     frametime = SDL_GetTicks() - framestart;
     if (FRAME_DELAY_MS > frametime) {
       SDL_Delay(FRAME_DELAY_MS - frametime);

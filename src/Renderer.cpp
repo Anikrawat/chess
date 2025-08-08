@@ -19,12 +19,13 @@ Renderer::Renderer(Window window) {
 }
 
 void Renderer::render(Board &board, Window &window, Pieces &pieceSprite) {
+
   window.drawWindow(this->windowRenderer);
+  board.draw(this->windowRenderer);
   for (const auto &square : board.squares) {
-    std::cout << square.piecePosition;
+    // std::cout << square.piecePosition << std::endl;
     pieceSprite.drawPieces(this->windowRenderer, square.piecePosition,
                            square.rectangle.rect);
   }
-  board.draw(this->windowRenderer);
   SDL_RenderPresent(this->windowRenderer);
 }
