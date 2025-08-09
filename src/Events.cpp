@@ -23,9 +23,16 @@ void Events::allEvents(bool &running, Board &board) {
           int file = relativeX / board.cellSize;
           int rank = 7 - (relativeY / board.cellSize);
 
-          std::cout << "{ " << rank << "," << file << " }" << std::endl;
+          //          std::cout << "{ " << rank << "," << file << " }" <<
+          //          std::endl;
 
-          board.squares[rank * 8 + file].rectangle.color = {255, 0, 0, 255};
+          int clickedSquare = rank * 8 + file;
+
+          if ((rank + file) % 2 == 0) {
+            board.squares[clickedSquare].rectangle.color = {210, 194, 109, 255};
+          } else {
+            board.squares[clickedSquare].rectangle.color = {190, 163, 85, 255};
+          }
         }
       }
     }
